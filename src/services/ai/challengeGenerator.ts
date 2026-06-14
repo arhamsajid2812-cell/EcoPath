@@ -8,10 +8,11 @@ import { GoogleGenAI } from '@google/genai';
 import { Challenge, AIResponse } from './types';
 import { buildChallengePrompt, SystemPrompts } from './promptBuilder';
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '' });
+const getAiClient = () => new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '' });
 
 export async function generateWeeklyChallenge(weakestArea: string): Promise<AIResponse<Challenge>> {
   try {
+    const ai = getAiClient();
     const prompt = buildChallengePrompt(weakestArea);
     
     const response = await ai.models.generateContent({

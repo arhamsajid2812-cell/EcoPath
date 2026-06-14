@@ -3,8 +3,16 @@
 import { useEffect, useState, useCallback, useRef } from 'react';
 import { useA11yStore } from '@/store/a11yStore';
 
+/**
+ * A custom React hook that provides an interface to the Web Speech Synthesis API.
+ * Handles text chunking for long strings, voice selection, and speech controls
+ * linked directly to the global accessibility store.
+ * 
+ * @returns An object containing TTS state (supported, errorMsg, voices, isSpeaking, isPaused)
+ *          and control functions (play, pause, resume, stop).
+ */
 export function useTTS() {
-  const { ttsEnabled, ttsSpeed, ttsVolume, ttsVoice } = useA11yStore();
+  const { ttsEnabled, speechRate, speechVolume, speechPitch, selectedVoiceURI } = useA11yStore();
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
@@ -28,20 +36,7 @@ export function useTTS() {
       if (availableVoices.length === 0) return; // Wait for async load
       
       console.log('Available voices:', availableVoices);
-      
-      // Target languages: English, Hindi, Urdu
-      const targetLangs = ['en', 'hi', 'ur'];
-      const filtered = availableVoices.filter(v => 
-        targetLangs.some(lang => v.lang.toLowerCase().startsWith(lang))
-      );
-      
-      // Fallback: If no hi or ur, ensure we at least have en-US
-      if (filtered.length > 0) {
-        setVoices(filtered);
-      } else {
-        const fallbackVoice = availableVoices.find(v => v.lang.includes('en-US'));
-        setVoices(fallbackVoice ? [fallbackVoice] : availableVoices);
-      }
+      setVoices(availableVoices);
     };
 
     loadVoices();
@@ -71,8 +66,9 @@ export function useTTS() {
     const utterance = new SpeechSynthesisUtterance(nextText);
     currentUtterance.current = utterance;
     
-    utterance.rate = ttsSpeed;
-    utterance.volume = ttsVolume;
+    utterance.rate = speechRate;
+    utterance.volume = speechVolume;
+    utterance.pitch = speechPitch;
 
     // Language Auto-Detection
     const isHindi = /[\u0900-\u097F]/.test(nextText);
@@ -82,8 +78,8 @@ export function useTTS() {
     if (isHindi) targetLang = 'hi';
     if (isUrdu) targetLang = 'ur';
 
-    if (ttsVoice && voices.length > 0) {
-      const selectedVoice = voices.find(v => v.name === ttsVoice);
+    if (selectedVoiceURI && voices.length > 0) {
+      const selectedVoice = voices.find(v => v.voiceURI === selectedVoiceURI);
       if (selectedVoice) {
         utterance.voice = selectedVoice;
       }
@@ -117,9 +113,10 @@ export function useTTS() {
     };
 
     window.speechSynthesis.speak(utterance);
-  }, [ttsSpeed, ttsVolume, ttsVoice, voices]);
+  }, [speechRate, speechVolume, speechPitch, selectedVoiceURI, voices]);
 
   const play = useCallback((text: string) => {
+    if (typeof window === 'undefined') return;
     if (!supported || !text) return;
     
     window.speechSynthesis.cancel();
@@ -156,6 +153,7 @@ export function useTTS() {
   }, [supported, playNextChunk]);
 
   const pause = useCallback(() => {
+    if (typeof window === 'undefined') return;
     if (supported && window.speechSynthesis.speaking) {
       window.speechSynthesis.pause();
       setIsPaused(true);
@@ -164,6 +162,7 @@ export function useTTS() {
   }, [supported]);
 
   const resume = useCallback(() => {
+    if (typeof window === 'undefined') return;
     if (supported && window.speechSynthesis.paused) {
       window.speechSynthesis.resume();
       setIsPaused(false);
@@ -172,6 +171,7 @@ export function useTTS() {
   }, [supported]);
 
   const stop = useCallback(() => {
+    if (typeof window === 'undefined') return;
     if (supported) {
       window.speechSynthesis.cancel();
       setIsSpeaking(false);

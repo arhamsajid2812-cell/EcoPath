@@ -6,7 +6,7 @@ import { X, Type, Palette, Eye, Activity, Volume2, BookOpen, Pause, Play, Square
 import { useEffect, useRef, useState } from 'react';
 
 export function AccessibilityDrawer({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) {
-  const { supported, errorMsg, play, pause, resume, stop } = useTTS();
+  const { supported, errorMsg, play, pause, resume, stop, voices } = useTTS();
   const [toastMsg, setToastMsg] = useState<string | null>(null);
 
   const handleReadSelected = () => {
@@ -26,6 +26,10 @@ export function AccessibilityDrawer({ isOpen, onClose }: { isOpen: boolean, onCl
     reducedMotion, setReducedMotion, 
     readingMode, setReadingMode, 
     ttsEnabled, setTtsEnabled,
+    selectedVoiceURI, setSelectedVoiceURI,
+    speechRate, setSpeechRate,
+    speechPitch, setSpeechPitch,
+    speechVolume, setSpeechVolume,
     resetAll
   } = useA11yStore();
 
@@ -212,6 +216,81 @@ export function AccessibilityDrawer({ isOpen, onClose }: { isOpen: boolean, onCl
                 {/* Speech Controls */}
                 {supported && ttsEnabled && (
                   <div className="space-y-2 pt-2 border-t border-border">
+                    {voices.length > 0 ? (
+                      <div className="mb-3 space-y-3">
+                        <div className="space-y-1">
+                          <label className="text-xs font-medium text-muted-foreground block" htmlFor="tts-voice-select">
+                            Select Voice
+                          </label>
+                          <select
+                            id="tts-voice-select"
+                            value={selectedVoiceURI || ''}
+                            onChange={(e) => setSelectedVoiceURI(e.target.value || null)}
+                            className="w-full p-2 text-sm bg-background border border-border rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                            aria-label="Select Voice"
+                          >
+                            <option value="">Auto-detect (Recommended)</option>
+                            {voices.map(v => (
+                              <option key={v.voiceURI} value={v.voiceURI}>
+                                {v.name} ({v.lang}){v.default ? ' - Default' : ''}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                        
+                        <div className="space-y-1">
+                          <label className="text-xs font-medium text-muted-foreground flex justify-between" htmlFor="tts-rate-slider">
+                            <span>Speech Rate</span>
+                            <span>{speechRate.toFixed(1)}x</span>
+                          </label>
+                          <input 
+                            id="tts-rate-slider"
+                            type="range" 
+                            min="0.5" max="2.0" step="0.1" 
+                            value={speechRate} 
+                            onChange={(e) => setSpeechRate(parseFloat(e.target.value))}
+                            className="w-full accent-primary"
+                            aria-label="Speech Rate"
+                          />
+                        </div>
+
+                        <div className="space-y-1">
+                          <label className="text-xs font-medium text-muted-foreground flex justify-between" htmlFor="tts-pitch-slider">
+                            <span>Speech Pitch</span>
+                            <span>{speechPitch.toFixed(1)}</span>
+                          </label>
+                          <input 
+                            id="tts-pitch-slider"
+                            type="range" 
+                            min="0" max="2" step="0.1" 
+                            value={speechPitch} 
+                            onChange={(e) => setSpeechPitch(parseFloat(e.target.value))}
+                            className="w-full accent-primary"
+                            aria-label="Speech Pitch"
+                          />
+                        </div>
+
+                        <div className="space-y-1">
+                          <label className="text-xs font-medium text-muted-foreground flex justify-between" htmlFor="tts-volume-slider">
+                            <span>Speech Volume</span>
+                            <span>{Math.round(speechVolume * 100)}%</span>
+                          </label>
+                          <input 
+                            id="tts-volume-slider"
+                            type="range" 
+                            min="0" max="1" step="0.1" 
+                            value={speechVolume} 
+                            onChange={(e) => setSpeechVolume(parseFloat(e.target.value))}
+                            className="w-full accent-primary"
+                            aria-label="Speech Volume"
+                          />
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="p-3 bg-muted text-muted-foreground text-xs rounded-md font-medium text-center">
+                        No speech voices available on this device.
+                      </div>
+                    )}
                     <button
                       onClick={() => play("Hello! Welcome to EcoPath accessibility mode.")}
                       className="w-full py-2 px-3 bg-secondary/20 text-secondary-foreground text-sm font-medium rounded-md hover:bg-secondary/30 transition-colors flex items-center justify-center gap-2"

@@ -8,10 +8,11 @@ import { GoogleGenAI } from '@google/genai';
 import { SimulationResult, SimulationInput, AIResponse } from './types';
 import { buildSimulationPrompt, SystemPrompts } from './promptBuilder';
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '' });
+const getAiClient = () => new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '' });
 
 export async function simulateCarbonFuture(currentEmission: number, input: SimulationInput): Promise<AIResponse<SimulationResult>> {
   try {
+    const ai = getAiClient();
     const prompt = buildSimulationPrompt(currentEmission, input.currentLifestyle, input.futureLifestyleChanges);
     
     const response = await ai.models.generateContent({

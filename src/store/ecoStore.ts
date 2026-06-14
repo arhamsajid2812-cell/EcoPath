@@ -15,6 +15,10 @@ interface EcoState {
   clearState: () => void;
 }
 
+/**
+ * Global state management for EcoPath environmental data.
+ * Handles user profiles, carbon simulation baselines, trend data, AI insights, and receipt history.
+ */
 export const useEcoStore = create<EcoState>((set) => ({
   isDemoMode: false,
   profile: null,

@@ -9,7 +9,9 @@ interface AIInsightsCardProps {
   quickWinOpportunity: string;
 }
 
-export function AIInsightsCard({ 
+import React from "react";
+
+export const AIInsightsCard = React.memo(function AIInsightsCard({ 
   biggestEmissionSource, 
   mostImprovedCategory, 
   quickWinOpportunity 
@@ -65,4 +67,4 @@ export function AIInsightsCard({
       </div>
     </motion.div>
   );
-}
+});

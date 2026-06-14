@@ -101,8 +101,8 @@ export default function VisionPage() {
             </>
           ) : (
             <div className="h-full flex flex-col items-center justify-center p-12 border-2 border-dashed border-border rounded-2xl bg-card/50 text-muted-foreground text-center">
-              <p className="text-lg font-medium mb-2">Awaiting Upload</p>
-              <p className="text-sm max-w-sm">Once you upload a receipt, Gemini Vision will automatically extract and grade every item in your basket.</p>
+              <p className="text-lg font-medium mb-2">Upload your first receipt to begin reducing your carbon footprint.</p>
+              <p className="text-sm max-w-sm">Once you upload a receipt, Gemini Vision will automatically extract and grade every item in your basket, suggesting greener alternatives.</p>
             </div>
           )}
         </div>

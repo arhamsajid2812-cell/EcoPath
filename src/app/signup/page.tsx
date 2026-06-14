@@ -39,6 +39,10 @@ export default function SignupPage() {
 
       console.log("Calling Supabase signup...");
 
+      if (!supabase) {
+        throw new Error("Supabase is not initialized.");
+      }
+
       const { data, error: signUpError } = await supabase.auth.signUp({
         email,
         password,

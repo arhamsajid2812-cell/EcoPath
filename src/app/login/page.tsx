@@ -34,6 +34,10 @@ export default function LoginPage() {
         return;
       }
 
+      if (!supabase) {
+        throw new Error("Supabase is not initialized.");
+      }
+
       const { data, error: signInError } = await supabase.auth.signInWithPassword({
         email,
         password,

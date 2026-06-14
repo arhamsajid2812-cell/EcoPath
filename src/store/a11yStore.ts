@@ -12,9 +12,10 @@ interface A11yState {
   reducedMotion: boolean;
   readingMode: boolean;
   ttsEnabled: boolean;
-  ttsSpeed: number;
-  ttsVolume: number;
-  ttsVoice: string | null;
+  speechRate: number;
+  speechPitch: number;
+  speechVolume: number;
+  selectedVoiceURI: string | null;
 
   setTheme: (theme: A11yTheme) => void;
   setFontSize: (size: A11yFontSize) => void;
@@ -22,10 +23,17 @@ interface A11yState {
   setReducedMotion: (enabled: boolean) => void;
   setReadingMode: (enabled: boolean) => void;
   setTtsEnabled: (enabled: boolean) => void;
-  setTtsSettings: (speed: number, volume: number, voice: string | null) => void;
+  setSelectedVoiceURI: (uri: string | null) => void;
+  setSpeechRate: (rate: number) => void;
+  setSpeechPitch: (pitch: number) => void;
+  setSpeechVolume: (volume: number) => void;
   resetAll: () => void;
 }
 
+/**
+ * Global store for accessibility settings, persisted to localStorage.
+ * Manages themes, fonts, motion, reading mode, and Text-to-Speech (TTS) preferences.
+ */
 export const useA11yStore = create<A11yState>()(
   persist(
     (set) => ({
@@ -35,9 +43,10 @@ export const useA11yStore = create<A11yState>()(
       reducedMotion: false,
       readingMode: false,
       ttsEnabled: false,
-      ttsSpeed: 1,
-      ttsVolume: 1,
-      ttsVoice: null,
+      speechRate: 1,
+      speechPitch: 1,
+      speechVolume: 1,
+      selectedVoiceURI: null,
 
       setTheme: (theme) => set({ theme }),
       setFontSize: (fontSize) => set({ fontSize }),
@@ -45,7 +54,10 @@ export const useA11yStore = create<A11yState>()(
       setReducedMotion: (reducedMotion) => set({ reducedMotion }),
       setReadingMode: (readingMode) => set({ readingMode }),
       setTtsEnabled: (ttsEnabled) => set({ ttsEnabled }),
-      setTtsSettings: (ttsSpeed, ttsVolume, ttsVoice) => set({ ttsSpeed, ttsVolume, ttsVoice }),
+      setSelectedVoiceURI: (selectedVoiceURI) => set({ selectedVoiceURI }),
+      setSpeechRate: (speechRate) => set({ speechRate }),
+      setSpeechPitch: (speechPitch) => set({ speechPitch }),
+      setSpeechVolume: (speechVolume) => set({ speechVolume }),
       resetAll: () => set({
         theme: 'default',
         fontSize: 'md',
@@ -53,9 +65,10 @@ export const useA11yStore = create<A11yState>()(
         reducedMotion: false,
         readingMode: false,
         ttsEnabled: false,
-        ttsSpeed: 1,
-        ttsVolume: 1,
-        ttsVoice: null,
+        speechRate: 1,
+        speechPitch: 1,
+        speechVolume: 1,
+        selectedVoiceURI: null,
       }),
     }),
     {

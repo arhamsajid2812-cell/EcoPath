@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { Accessibility } from 'lucide-react';
-import { AccessibilityDrawer } from './AccessibilityDrawer';
+import dynamic from 'next/dynamic';
+const AccessibilityDrawer = dynamic(() => import('./AccessibilityDrawer').then(mod => mod.AccessibilityDrawer), { ssr: false });
 
 export function AccessibilityFab() {
   const [isOpen, setIsOpen] = useState(false);

@@ -8,7 +8,9 @@ interface FutureNarrativeCardProps {
   isLoading: boolean;
 }
 
-export function FutureNarrativeCard({ narrative, isLoading }: FutureNarrativeCardProps) {
+import React from "react";
+
+export const FutureNarrativeCard = React.memo(function FutureNarrativeCard({ narrative, isLoading }: FutureNarrativeCardProps) {
   return (
     <motion.div 
       initial={{ opacity: 0 }}
@@ -40,4 +42,4 @@ export function FutureNarrativeCard({ narrative, isLoading }: FutureNarrativeCar
       </div>
     </motion.div>
   );
-}
+});

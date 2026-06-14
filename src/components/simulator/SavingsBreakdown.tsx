@@ -13,7 +13,9 @@ interface SavingsBreakdownProps {
   totalSaved: number;
 }
 
-export function SavingsBreakdown({ savings, totalSaved }: SavingsBreakdownProps) {
+import React from "react";
+
+export const SavingsBreakdown = React.memo(function SavingsBreakdown({ savings, totalSaved }: SavingsBreakdownProps) {
   const categories = [
     { name: "Transportation", value: savings.transportation, color: "bg-primary" },
     { name: "Electricity", value: savings.electricity, color: "bg-yellow-500" },
@@ -50,4 +52,4 @@ export function SavingsBreakdown({ savings, totalSaved }: SavingsBreakdownProps)
       </div>
     </div>
   );
-}
+});

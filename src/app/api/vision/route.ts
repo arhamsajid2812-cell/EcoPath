@@ -11,6 +11,12 @@ const payloadSchema = z.object({
 
 const MAX_FILE_SIZE_BYTES = 5 * 1024 * 1024; // 5MB
 
+/**
+ * Validates the magic bytes of a base64 encoded file string against its claimed MIME type.
+ * @param base64 - The base64 encoded file content
+ * @param mimeType - The claimed MIME type
+ * @returns boolean indicating if the magic bytes match the expected MIME type signature
+ */
 function isValidMagicByte(base64: string, mimeType: string): boolean {
   // Strip data URL prefix if present
   const pureBase64 = base64.replace(/^data:image\/\w+;base64,/, '');
@@ -22,6 +28,12 @@ function isValidMagicByte(base64: string, mimeType: string): boolean {
   return false;
 }
 
+/**
+ * Handles incoming POST requests for Vision AI receipt scanning.
+ * Extracts items, calculates carbon weight, and suggests alternatives using Gemini.
+ * @param request - The NextRequest object containing the image payload
+ * @returns A NextResponse containing the parsed receipt data or an error
+ */
 export async function POST(request: NextRequest) {
   try {
     // 1. Rate Limiting (5 req / min)

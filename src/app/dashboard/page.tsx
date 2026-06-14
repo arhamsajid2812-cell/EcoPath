@@ -8,6 +8,8 @@ import { CarbonScoreCard } from "@/components/dashboard/CarbonScoreCard";
 import { AIInsightsCard } from "@/components/dashboard/AIInsightsCard";
 import { RecommendationCard } from "@/components/dashboard/RecommendationCard";
 import { ImpactTree } from "@/components/dashboard/ImpactTree";
+import { MeasurableImpactWidget } from "@/components/dashboard/MeasurableImpactWidget";
+import { SustainabilityFactsWidget } from "@/components/dashboard/SustainabilityFactsWidget";
 import dynamic from 'next/dynamic';
 
 const EmissionTrendChart = dynamic(() => import("@/components/dashboard/EmissionTrendChart").then(mod => mod.EmissionTrendChart), { ssr: false, loading: () => <div className="h-full w-full flex items-center justify-center bg-muted/20 animate-pulse rounded-2xl">Loading Chart...</div> });
@@ -47,15 +49,17 @@ export default function DashboardPage() {
 
       {/* Top Row: Hero Stats & Impact Tree */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2">
+        <div className="lg:col-span-2 flex flex-col gap-6">
           <CarbonScoreCard 
             annualEmission={profile.totalAnnualEmission} 
             sustainabilityScore={profile.sustainabilityScore} 
             impactLevel={profile.impactLevel as 'LOW' | 'MODERATE' | 'HIGH'} 
           />
+          <MeasurableImpactWidget />
         </div>
-        <div className="lg:col-span-1">
+        <div className="lg:col-span-1 flex flex-col gap-6">
           <ImpactTree totalSavedKg={profile.totalSavedKg} />
+          <SustainabilityFactsWidget />
         </div>
       </div>
 

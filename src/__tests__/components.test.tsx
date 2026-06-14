@@ -4,15 +4,17 @@ import DashboardPage from '@/app/dashboard/page';
 import { AccessibilityDrawer } from '@/components/accessibility/AccessibilityDrawer';
 
 // Mock Zustand Store
+const mockState = {
+  profile: { name: 'Hackathon Judge', totalAnnualEmission: 5000, sustainabilityScore: 85, impactLevel: 'LOW', totalSavedKg: 200 },
+  trendData: [],
+  categoryData: [],
+  aiInsights: { biggestEmissionSource: 'Car', mostImprovedCategory: 'Diet', quickWinOpportunity: 'Switch to LEDs', recommendations: [] },
+  activeChallenges: [],
+  activateDemoMode: vi.fn()
+};
+
 vi.mock('@/store/ecoStore', () => ({
-  useEcoStore: vi.fn(() => ({
-    profile: { name: 'Hackathon Judge', totalAnnualEmission: 5000, sustainabilityScore: 85, impactLevel: 'LOW', totalSavedKg: 200 },
-    trendData: [],
-    categoryData: [],
-    aiInsights: { biggestEmissionSource: 'Car', mostImprovedCategory: 'Diet', quickWinOpportunity: 'Switch to LEDs', recommendations: [] },
-    activeChallenges: [],
-    activateDemoMode: vi.fn()
-  }))
+  useEcoStore: vi.fn((selector) => selector ? selector(mockState) : mockState)
 }));
 
 // Mock ResizeObserver for Recharts

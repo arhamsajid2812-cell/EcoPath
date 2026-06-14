@@ -18,13 +18,14 @@ import {
   SystemPrompts 
 } from './promptBuilder';
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '' });
+const getAiClient = () => new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '' });
 
 /**
  * Generic helper to call Gemini and strictly parse JSON responses.
  */
 async function generateJson<T>(prompt: string): Promise<AIResponse<T>> {
   try {
+    const ai = getAiClient();
     const response = await ai.models.generateContent({
       model: 'gemini-2.5-flash',
       contents: prompt + '\n\n' + SystemPrompts.JSON_OUTPUT,

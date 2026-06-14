@@ -8,7 +8,9 @@ interface ActiveChallengesProps {
   expectedImpact: string;
 }
 
-export function ActiveChallenges({ title, progress, expectedImpact }: ActiveChallengesProps) {
+import React from "react";
+
+export const ActiveChallenges = React.memo(function ActiveChallenges({ title, progress, expectedImpact }: ActiveChallengesProps) {
   return (
     <motion.div 
       initial={{ opacity: 0, x: -20 }}
@@ -33,4 +35,4 @@ export function ActiveChallenges({ title, progress, expectedImpact }: ActiveChal
       </div>
     </motion.div>
   );
-}
+});

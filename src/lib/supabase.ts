@@ -18,10 +18,10 @@ if (!hasSupabaseConfig) {
  * Note: If env variables are missing, we pass dummy values to prevent initialization crashes,
  * but API calls will fail. Check `hasSupabaseConfig` before making calls.
  */
-export const supabase = createClient(
-  isValidUrl ? supabaseUrl : 'https://placeholder.supabase.co', 
-  supabaseAnonKey || 'placeholder-key'
-);
+export const supabase = 
+  hasSupabaseConfig && supabaseUrl && supabaseAnonKey
+    ? createClient(supabaseUrl, supabaseAnonKey)
+    : null;
 
 /**
  * Helper to get the current user session securely.
@@ -30,6 +30,7 @@ export async function getSession() {
   if (!hasSupabaseConfig) return null;
   
   try {
+    if (!supabase) return null;
     const { data: { session }, error } = await supabase.auth.getSession();
     if (error) {
       console.error("Auth Session Error:", error);

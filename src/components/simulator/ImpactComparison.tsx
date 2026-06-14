@@ -10,7 +10,9 @@ interface ImpactComparisonProps {
   futureScore: number;
 }
 
-export function ImpactComparison({ currentEmission, futureEmission, currentScore, futureScore }: ImpactComparisonProps) {
+import React from "react";
+
+export const ImpactComparison = React.memo(function ImpactComparison({ currentEmission, futureEmission, currentScore, futureScore }: ImpactComparisonProps) {
   const reduction = currentEmission - futureEmission;
   const isReduced = reduction > 0;
 
@@ -45,4 +47,4 @@ export function ImpactComparison({ currentEmission, futureEmission, currentScore
       </motion.div>
     </div>
   );
-}
+});

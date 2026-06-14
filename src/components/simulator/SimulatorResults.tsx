@@ -8,7 +8,9 @@ interface SimulatorResultsProps {
   reductionPercentage: number;
 }
 
-export function SimulatorResults({ totalSavedKg, reductionPercentage }: SimulatorResultsProps) {
+import React from "react";
+
+export const SimulatorResults = React.memo(function SimulatorResults({ totalSavedKg, reductionPercentage }: SimulatorResultsProps) {
   if (totalSavedKg <= 0) return null;
 
   // Environmental Equivalents (Approximations)
@@ -63,4 +65,4 @@ export function SimulatorResults({ totalSavedKg, reductionPercentage }: Simulato
       )}
     </div>
   );
-}
+});

@@ -9,17 +9,18 @@ import { SystemPrompts } from './promptBuilder';
 import { AIResponse } from './types';
 
 export class EcoCoach {
-  private ai: GoogleGenAI;
-  private chatSession: unknown; // Removed 'any'
+  private ai?: GoogleGenAI;
+  private chatSession: any;
 
-  constructor() {
-    this.ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '' });
-  }
+  constructor() {}
 
   /**
    * Initializes the chat session with the persona instructions.
    */
   async startChat(): Promise<AIResponse<boolean>> {
+    if (!this.ai) {
+      this.ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '' });
+    }
     try {
       this.chatSession = await this.ai.chats.create({
         model: 'gemini-2.5-flash',

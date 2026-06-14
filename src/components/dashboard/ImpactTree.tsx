@@ -7,7 +7,9 @@ interface ImpactTreeProps {
   totalSavedKg: number;
 }
 
-export function ImpactTree({ totalSavedKg }: ImpactTreeProps) {
+import React from "react";
+
+export const ImpactTree = React.memo(function ImpactTree({ totalSavedKg }: ImpactTreeProps) {
   // Determine Stage
   let stageName = "Seed";
   let progress = 0;
@@ -99,4 +101,4 @@ export function ImpactTree({ totalSavedKg }: ImpactTreeProps) {
       )}
     </motion.div>
   );
-}
+});
