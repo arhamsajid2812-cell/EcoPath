@@ -1,0 +1,1098 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Component Snapshot Tests > renders AccessibilityDrawer correctly 1`] = `
+<div>
+  <div
+    aria-hidden="true"
+    class="fixed inset-0 bg-black/50 z-[999] transition-opacity"
+  />
+  <div
+    aria-label="Accessibility Options Drawer"
+    aria-modal="true"
+    class="fixed inset-y-0 right-0 w-full max-w-sm bg-card shadow-2xl z-[1000] overflow-y-auto transform transition-transform duration-300 ease-in-out border-l border-border flex flex-col"
+    role="dialog"
+    tabindex="-1"
+  >
+    <div
+      class="flex items-center justify-between p-4 border-b border-border sticky top-0 bg-card z-10"
+    >
+      <h2
+        class="text-xl font-bold flex items-center gap-2"
+      >
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-eye w-5 h-5 text-primary"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"
+          />
+          <circle
+            cx="12"
+            cy="12"
+            r="3"
+          />
+        </svg>
+        Accessibility
+      </h2>
+      <button
+        aria-label="Close Accessibility Drawer"
+        class="p-2 hover:bg-muted rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+      >
+        <svg
+          class="lucide lucide-x w-5 h-5"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M18 6 6 18"
+          />
+          <path
+            d="m6 6 12 12"
+          />
+        </svg>
+      </button>
+    </div>
+    <div
+      class="p-6 space-y-8 flex-1"
+    >
+      <section
+        aria-labelledby="a11y-font-heading"
+      >
+        <h3
+          class="text-sm font-semibold uppercase text-muted-foreground flex items-center gap-2 mb-4"
+          id="a11y-font-heading"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-type w-4 h-4"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <polyline
+              points="4 7 4 4 20 4 20 7"
+            />
+            <line
+              x1="9"
+              x2="15"
+              y1="20"
+              y2="20"
+            />
+            <line
+              x1="12"
+              x2="12"
+              y1="4"
+              y2="20"
+            />
+          </svg>
+           Text & Fonts
+        </h3>
+        <div
+          class="space-y-4"
+        >
+          <div>
+            <label
+              class="block text-sm mb-2"
+              id="a11y-size-label"
+            >
+              Font Size
+            </label>
+            <div
+              aria-labelledby="a11y-size-label"
+              class="grid grid-cols-4 gap-2"
+              role="group"
+            >
+              <button
+                aria-pressed="false"
+                class="p-2 border rounded-md text-sm bg-background hover:bg-muted border-border"
+              >
+                SM
+              </button>
+              <button
+                aria-pressed="true"
+                class="p-2 border rounded-md text-sm bg-primary text-primary-foreground border-primary"
+              >
+                MD
+              </button>
+              <button
+                aria-pressed="false"
+                class="p-2 border rounded-md text-sm bg-background hover:bg-muted border-border"
+              >
+                LG
+              </button>
+              <button
+                aria-pressed="false"
+                class="p-2 border rounded-md text-sm bg-background hover:bg-muted border-border"
+              >
+                XL
+              </button>
+            </div>
+          </div>
+          <div>
+            <label
+              class="block text-sm mb-2"
+              id="a11y-family-label"
+            >
+              Font Family
+            </label>
+            <div
+              aria-labelledby="a11y-family-label"
+              class="flex flex-col gap-2"
+              role="group"
+            >
+              <button
+                aria-pressed="true"
+                class="p-2 text-left border rounded-md border-primary ring-1 ring-primary"
+              >
+                System Default
+              </button>
+              <button
+                aria-pressed="false"
+                class="p-2 text-left border rounded-md font-hyperlegible border-border"
+              >
+                Atkinson Hyperlegible
+              </button>
+              <button
+                aria-pressed="false"
+                class="p-2 text-left border rounded-md font-dyslexic border-border"
+              >
+                OpenDyslexic
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section
+        aria-labelledby="a11y-theme-heading"
+      >
+        <h3
+          class="text-sm font-semibold uppercase text-muted-foreground flex items-center gap-2 mb-4"
+          id="a11y-theme-heading"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-palette w-4 h-4"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="13.5"
+              cy="6.5"
+              fill="currentColor"
+              r=".5"
+            />
+            <circle
+              cx="17.5"
+              cy="10.5"
+              fill="currentColor"
+              r=".5"
+            />
+            <circle
+              cx="8.5"
+              cy="7.5"
+              fill="currentColor"
+              r=".5"
+            />
+            <circle
+              cx="6.5"
+              cy="12.5"
+              fill="currentColor"
+              r=".5"
+            />
+            <path
+              d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"
+            />
+          </svg>
+           Colors & Contrast
+        </h3>
+        <div
+          aria-labelledby="a11y-theme-heading"
+          class="grid grid-cols-2 gap-2"
+          role="group"
+        >
+          <button
+            aria-pressed="true"
+            class="p-2 border rounded-md text-sm capitalize text-left border-primary bg-primary/10 font-medium"
+          >
+            default
+          </button>
+          <button
+            aria-pressed="false"
+            class="p-2 border rounded-md text-sm capitalize text-left border-border hover:bg-muted"
+          >
+            high contrast
+          </button>
+          <button
+            aria-pressed="false"
+            class="p-2 border rounded-md text-sm capitalize text-left border-border hover:bg-muted"
+          >
+            dark
+          </button>
+          <button
+            aria-pressed="false"
+            class="p-2 border rounded-md text-sm capitalize text-left border-border hover:bg-muted"
+          >
+            protanopia
+          </button>
+          <button
+            aria-pressed="false"
+            class="p-2 border rounded-md text-sm capitalize text-left border-border hover:bg-muted"
+          >
+            deuteranopia
+          </button>
+          <button
+            aria-pressed="false"
+            class="p-2 border rounded-md text-sm capitalize text-left border-border hover:bg-muted"
+          >
+            tritanopia
+          </button>
+        </div>
+      </section>
+      <section
+        aria-labelledby="a11y-assistive-heading"
+      >
+        <h3
+          class="text-sm font-semibold uppercase text-muted-foreground flex items-center gap-2 mb-4"
+          id="a11y-assistive-heading"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-activity w-4 h-4"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M22 12h-4l-3 9L9 3l-3 9H2"
+            />
+          </svg>
+           Assistive Tools
+        </h3>
+        <div
+          class="space-y-3"
+        >
+          <label
+            class="flex items-center justify-between p-3 border border-border rounded-md hover:bg-muted cursor-pointer"
+          >
+            <div
+              class="flex items-center gap-2"
+            >
+              <svg
+                aria-hidden="true"
+                class="lucide lucide-activity w-4 h-4 text-muted-foreground"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M22 12h-4l-3 9L9 3l-3 9H2"
+                />
+              </svg>
+              <span
+                class="text-sm font-medium"
+              >
+                Reduced Motion
+              </span>
+            </div>
+            <input
+              aria-label="Toggle Reduced Motion"
+              class="w-4 h-4 accent-primary"
+              type="checkbox"
+            />
+          </label>
+          <label
+            class="flex items-center justify-between p-3 border border-border rounded-md hover:bg-muted cursor-pointer"
+          >
+            <div
+              class="flex items-center gap-2"
+            >
+              <svg
+                aria-hidden="true"
+                class="lucide lucide-book-open w-4 h-4 text-muted-foreground"
+                fill="none"
+                height="24"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"
+                />
+                <path
+                  d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"
+                />
+              </svg>
+              <span
+                class="text-sm font-medium"
+              >
+                Reading Mode
+              </span>
+            </div>
+            <input
+              aria-label="Toggle Reading Mode (increases line spacing and bounds text width)"
+              class="w-4 h-4 accent-primary"
+              type="checkbox"
+            />
+          </label>
+          <div
+            class="space-y-2"
+          >
+            <label
+              class="flex items-center justify-between p-3 border border-border rounded-md hover:bg-muted cursor-pointer"
+            >
+              <div
+                class="flex items-center gap-2"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="lucide lucide-volume2 w-4 h-4 text-muted-foreground"
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <polygon
+                    points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"
+                  />
+                  <path
+                    d="M15.54 8.46a5 5 0 0 1 0 7.07"
+                  />
+                  <path
+                    d="M19.07 4.93a10 10 0 0 1 0 14.14"
+                  />
+                </svg>
+                <span
+                  class="text-sm font-medium"
+                >
+                  Text-to-Speech (TTS)
+                </span>
+              </div>
+              <input
+                aria-label="Enable native Text-to-Speech"
+                class="w-4 h-4 accent-primary"
+                type="checkbox"
+              />
+            </label>
+            <div
+              class="p-3 bg-destructive/10 text-destructive text-xs rounded-md font-medium"
+            >
+              Text-to-Speech is not supported in this browser.
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div
+      class="p-4 border-t border-border bg-muted/30"
+    >
+      <button
+        class="w-full py-2 px-4 bg-background border border-border rounded-md text-sm font-medium hover:bg-muted hover:text-destructive transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-destructive"
+      >
+        Reset All Preferences
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Component Snapshot Tests > renders Dashboard correctly 1`] = `
+<div>
+  <div
+    class="max-w-7xl mx-auto space-y-6"
+    style="opacity: 0;"
+  >
+    <header
+      class="mb-2"
+    >
+      <h1
+        class="text-3xl font-bold tracking-tight"
+      >
+        Welcome back, 
+        Hackathon
+      </h1>
+      <p
+        class="text-muted-foreground mt-1"
+      >
+        Here is your environmental impact overview.
+      </p>
+    </header>
+    <div
+      class="grid grid-cols-1 lg:grid-cols-3 gap-6"
+    >
+      <div
+        class="lg:col-span-2"
+      >
+        <div
+          class="bg-gradient-to-br from-primary/20 to-primary/5 border border-border/50 rounded-2xl p-6 shadow-sm relative overflow-hidden"
+          style="opacity: 0; transform: translateY(20px);"
+        >
+          <div
+            class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none"
+          />
+          <div
+            class="flex justify-between items-start mb-4"
+          >
+            <div>
+              <h2
+                class="text-lg font-medium text-foreground/80"
+              >
+                Total Annual Emission
+              </h2>
+              <div
+                class="text-4xl font-bold tracking-tight mt-1 flex items-baseline gap-1"
+                style="transform: scale(0.8);"
+              >
+                5,000
+                 
+                <span
+                  class="text-xl text-foreground/60 font-normal"
+                >
+                  kg CO₂e
+                </span>
+              </div>
+            </div>
+            <div
+              class="px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase bg-white/50 dark:bg-black/20 text-primary"
+            >
+              LOW
+               IMPACT
+            </div>
+          </div>
+          <div
+            class="mt-8 pt-6 border-t border-border/30 flex items-center justify-between"
+          >
+            <div>
+              <p
+                class="text-sm text-foreground/70 mb-1"
+              >
+                Sustainability Score
+              </p>
+              <div
+                class="flex items-end gap-2"
+              >
+                <span
+                  class="text-2xl font-bold"
+                >
+                  85
+                </span>
+                <span
+                  class="text-sm text-foreground/50 mb-1"
+                >
+                  / 100
+                </span>
+              </div>
+            </div>
+            <div
+              class="w-1/2"
+            >
+              <div
+                class="h-2 w-full bg-muted rounded-full overflow-hidden"
+              >
+                <div
+                  class="h-full bg-primary"
+                  style="width: 0px;"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="lg:col-span-1"
+      >
+        <div
+          class="bg-card border border-border rounded-2xl p-6 shadow-sm flex flex-col items-center justify-center text-center h-full relative overflow-hidden"
+          style="opacity: 0; transform: scale(0.9);"
+        >
+          <div
+            class="absolute top-0 right-0 p-4 opacity-5 pointer-events-none"
+          >
+            <svg
+              class="lucide lucide-tree-pine "
+              fill="none"
+              height="150"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="150"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m17 14 3 3.3a1 1 0 0 1-.7 1.7H4.7a1 1 0 0 1-.7-1.7L7 14h-.3a1 1 0 0 1-.7-1.7L9 9h-.2A1 1 0 0 1 8 7.3L12 3l4 4.3a1 1 0 0 1-.8 1.7H15l3 3.3a1 1 0 0 1-.7 1.7H17Z"
+              />
+              <path
+                d="M12 22v-3"
+              />
+            </svg>
+          </div>
+          <h3
+            class="text-lg font-semibold w-full text-left mb-6 z-10"
+          >
+            Your Impact Tree
+          </h3>
+          <div
+            class="relative w-32 h-32 mb-4 z-10"
+          >
+            <div
+              class="absolute inset-0 bg-primary/10 rounded-full flex items-center justify-center border-4 border-primary/20"
+            >
+              <svg
+                class="lucide lucide-leaf text-primary"
+                fill="none"
+                height="48"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="48"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"
+                />
+                <path
+                  d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"
+                />
+              </svg>
+            </div>
+            <svg
+              class="absolute inset-0 w-full h-full -rotate-90"
+            >
+              <circle
+                class="text-muted"
+                cx="64"
+                cy="64"
+                fill="transparent"
+                r="60"
+                stroke="currentColor"
+                stroke-width="4"
+              />
+              <circle
+                class="text-primary"
+                cx="64"
+                cy="64"
+                fill="transparent"
+                r="60"
+                stroke="currentColor"
+                stroke-dasharray="377"
+                stroke-dashoffset="377"
+                stroke-width="4"
+              />
+            </svg>
+          </div>
+          <h4
+            class="text-xl font-bold text-primary mb-1 z-10"
+          >
+            Sapling
+          </h4>
+          <p
+            class="text-sm text-muted-foreground z-10"
+          >
+            200
+             kg CO₂ saved
+          </p>
+          <p
+            class="text-xs text-muted-foreground mt-4 bg-muted px-3 py-1 rounded-full z-10"
+          >
+            50
+             kg to next stage
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
+      class="bg-card border border-border rounded-2xl p-6 shadow-sm"
+    >
+      <h3
+        class="text-lg font-semibold mb-4"
+      >
+        Quick Actions
+      </h3>
+      <div
+        class="grid grid-cols-2 md:grid-cols-4 gap-4"
+      >
+        <a
+          href="/dashboard"
+        >
+          <div
+            aria-label="Log Activity"
+            class="bg-primary text-primary-foreground rounded-xl p-4 flex flex-col items-center justify-center text-center gap-2 cursor-pointer h-24 shadow-sm"
+            tabindex="0"
+          >
+            <svg
+              class="lucide lucide-plus-circle "
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="12"
+                cy="12"
+                r="10"
+              />
+              <path
+                d="M8 12h8"
+              />
+              <path
+                d="M12 8v8"
+              />
+            </svg>
+            <span
+              class="text-xs font-semibold"
+            >
+              Log Activity
+            </span>
+          </div>
+        </a>
+        <a
+          href="/dashboard/insights"
+        >
+          <div
+            aria-label="AI Coach"
+            class="bg-secondary text-secondary-foreground rounded-xl p-4 flex flex-col items-center justify-center text-center gap-2 cursor-pointer h-24 shadow-sm"
+            tabindex="0"
+          >
+            <svg
+              class="lucide lucide-bot "
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 8V4H8"
+              />
+              <rect
+                height="12"
+                rx="2"
+                width="16"
+                x="4"
+                y="8"
+              />
+              <path
+                d="M2 14h2"
+              />
+              <path
+                d="M20 14h2"
+              />
+              <path
+                d="M15 13v2"
+              />
+              <path
+                d="M9 13v2"
+              />
+            </svg>
+            <span
+              class="text-xs font-semibold"
+            >
+              AI Coach
+            </span>
+          </div>
+        </a>
+        <a
+          href="/dashboard/simulator"
+        >
+          <div
+            aria-label="Simulator"
+            class="bg-blue-500 text-white rounded-xl p-4 flex flex-col items-center justify-center text-center gap-2 cursor-pointer h-24 shadow-sm"
+            tabindex="0"
+          >
+            <svg
+              class="lucide lucide-activity "
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M22 12h-4l-3 9L9 3l-3 9H2"
+              />
+            </svg>
+            <span
+              class="text-xs font-semibold"
+            >
+              Simulator
+            </span>
+          </div>
+        </a>
+        <a
+          href="/dashboard/challenges"
+        >
+          <div
+            aria-label="Challenges"
+            class="bg-yellow-500 text-white rounded-xl p-4 flex flex-col items-center justify-center text-center gap-2 cursor-pointer h-24 shadow-sm"
+            tabindex="0"
+          >
+            <svg
+              class="lucide lucide-target "
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="12"
+                cy="12"
+                r="10"
+              />
+              <circle
+                cx="12"
+                cy="12"
+                r="6"
+              />
+              <circle
+                cx="12"
+                cy="12"
+                r="2"
+              />
+            </svg>
+            <span
+              class="text-xs font-semibold"
+            >
+              Challenges
+            </span>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div
+      class="grid grid-cols-1 lg:grid-cols-2 gap-6"
+    >
+      <div
+        class="h-[350px]"
+      >
+        <div
+          class="h-full w-full flex items-center justify-center bg-muted/20 animate-pulse rounded-2xl"
+        >
+          Loading Chart...
+        </div>
+      </div>
+      <div
+        class="h-[350px]"
+      >
+        <div
+          class="h-full w-full flex items-center justify-center bg-muted/20 animate-pulse rounded-2xl"
+        >
+          Loading Chart...
+        </div>
+      </div>
+    </div>
+    <div
+      class="grid grid-cols-1 lg:grid-cols-3 gap-6"
+    >
+      <div
+        class="lg:col-span-1 h-full"
+      >
+        <div
+          class="bg-gradient-to-br from-card to-muted border border-border/80 rounded-2xl p-6 shadow-sm relative overflow-hidden backdrop-blur-xl"
+          style="opacity: 0; transform: scale(0.95);"
+        >
+          <div
+            class="absolute top-0 right-0 p-6 opacity-10 pointer-events-none"
+          >
+            <svg
+              class="lucide lucide-sparkles "
+              fill="none"
+              height="100"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="100"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"
+              />
+              <path
+                d="M5 3v4"
+              />
+              <path
+                d="M19 17v4"
+              />
+              <path
+                d="M3 5h4"
+              />
+              <path
+                d="M17 19h4"
+              />
+            </svg>
+          </div>
+          <div
+            class="flex items-center gap-2 mb-6"
+          >
+            <svg
+              class="lucide lucide-sparkles text-primary w-5 h-5"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"
+              />
+              <path
+                d="M5 3v4"
+              />
+              <path
+                d="M19 17v4"
+              />
+              <path
+                d="M3 5h4"
+              />
+              <path
+                d="M17 19h4"
+              />
+            </svg>
+            <h3
+              class="text-lg font-semibold bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
+            >
+              Gemini Insights
+            </h3>
+          </div>
+          <div
+            class="space-y-4 relative z-10"
+          >
+            <div
+              class="flex items-start gap-3 p-3 bg-background/50 rounded-xl border border-border/50"
+            >
+              <div
+                class="p-2 bg-destructive/10 text-destructive rounded-lg mt-1"
+              >
+                <svg
+                  class="lucide lucide-arrow-down-right "
+                  fill="none"
+                  height="16"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="m7 7 10 10"
+                  />
+                  <path
+                    d="M17 7v10H7"
+                  />
+                </svg>
+              </div>
+              <div>
+                <p
+                  class="text-xs text-muted-foreground font-medium uppercase tracking-wider mb-1"
+                >
+                  Focus Area
+                </p>
+                <p
+                  class="text-sm font-medium"
+                >
+                  Car
+                </p>
+              </div>
+            </div>
+            <div
+              class="flex items-start gap-3 p-3 bg-background/50 rounded-xl border border-border/50"
+            >
+              <div
+                class="p-2 bg-primary/10 text-primary rounded-lg mt-1"
+              >
+                <svg
+                  class="lucide lucide-target "
+                  fill="none"
+                  height="16"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                  />
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="6"
+                  />
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="2"
+                  />
+                </svg>
+              </div>
+              <div>
+                <p
+                  class="text-xs text-muted-foreground font-medium uppercase tracking-wider mb-1"
+                >
+                  Great Job
+                </p>
+                <p
+                  class="text-sm font-medium"
+                >
+                  Diet
+                </p>
+              </div>
+            </div>
+            <div
+              class="flex items-start gap-3 p-3 bg-background/50 rounded-xl border border-border/50"
+            >
+              <div
+                class="p-2 bg-yellow-500/10 text-yellow-500 rounded-lg mt-1"
+              >
+                <svg
+                  class="lucide lucide-zap "
+                  fill="none"
+                  height="16"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <polygon
+                    points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"
+                  />
+                </svg>
+              </div>
+              <div>
+                <p
+                  class="text-xs text-muted-foreground font-medium uppercase tracking-wider mb-1"
+                >
+                  Quick Win
+                </p>
+                <p
+                  class="text-sm font-medium"
+                >
+                  Switch to LEDs
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="lg:col-span-2 bg-card border border-border rounded-2xl p-6 shadow-sm flex flex-col"
+      >
+        <div
+          class="flex justify-between items-center mb-6"
+        >
+          <h3
+            class="text-lg font-semibold"
+          >
+            Recommended Actions
+          </h3>
+          <button
+            class="text-sm font-medium text-primary hover:underline"
+          >
+            View All
+          </button>
+        </div>
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 gap-4 flex-1"
+        />
+      </div>
+    </div>
+    <div
+      class="bg-card border border-border rounded-2xl p-6 shadow-sm mb-10"
+    >
+      <h3
+        class="text-lg font-semibold mb-6"
+      >
+        Active Challenges
+      </h3>
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 gap-6"
+      />
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,186 @@
+/**
+ * Purpose: Global CSS definitions and Tailwind base layers.
+ * Responsibility: Provide the baseline styling, CSS variables for the theming system, and global resets.
+ * Future Integrations: Add specific dark mode overrides, custom scrollbar styling, and complex CSS animation classes.
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 160 20% 96%; /* Soft Sage White (#F4F7F6) */
+    --foreground: 170 18% 13%; /* Deep Slate (#1C2826) */
+    --card: 0 0% 100%;
+    --card-foreground: 170 18% 13%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 170 18% 13%;
+    --primary: 130 46% 34%; /* Forest Green (#2E7D32) */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 122 42% 64%; /* Leaf Green (#81C784) */
+    --secondary-foreground: 170 18% 13%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%; /* Blue Grey */
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 130 46% 34%;
+    --radius: 0.75rem; /* lg rounding */
+  }
+
+  .dark {
+    --background: 170 18% 10%;
+    --foreground: 160 20% 96%;
+    --card: 170 18% 13%;
+    --card-foreground: 160 20% 96%;
+    --popover: 170 18% 13%;
+    --popover-foreground: 160 20% 96%;
+    --primary: 130 46% 40%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 122 42% 50%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 130 46% 40%;
+  }
+
+  /* High Contrast Mode */
+  .high-contrast {
+    --background: 0 0% 0%; /* Pure Black */
+    --foreground: 0 0% 100%; /* Pure White */
+    --card: 0 0% 0%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 0%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 60 100% 50%; /* High vis yellow */
+    --primary-foreground: 0 0% 0%;
+    --secondary: 180 100% 50%; /* Cyan */
+    --secondary-foreground: 0 0% 0%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 80%;
+    --border: 0 0% 100%;
+    --input: 0 0% 100%;
+    --ring: 60 100% 50%;
+  }
+
+  /* Colorblind Themes */
+  .protanopia {
+    --primary: 210 100% 50%;
+    --secondary: 45 100% 50%;
+    --destructive: 300 100% 25%;
+  }
+
+  .deuteranopia {
+    --primary: 220 100% 50%;
+    --secondary: 35 100% 50%;
+    --destructive: 280 100% 30%;
+  }
+
+  .tritanopia {
+    --primary: 0 100% 50%;
+    --secondary: 180 100% 40%;
+    --destructive: 30 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased transition-colors duration-300;
+  }
+  
+  /* Font Size Scaling using Custom Properties */
+  :root {
+    --font-scale: 1;
+  }
+
+  [data-font-size="sm"] {
+    --font-scale: 0.9;
+  }
+
+  [data-font-size="md"] {
+    --font-scale: 1;
+  }
+
+  [data-font-size="lg"] {
+    --font-scale: 1.1;
+  }
+
+  [data-font-size="xl"] {
+    --font-scale: 1.25;
+  }
+
+  html {
+    font-size: calc(16px * var(--font-scale)) !important;
+  }
+
+  /* Font Families (Fallbacks for self-hosted) */
+  html.font-dyslexic body {
+    font-family: 'OpenDyslexic', 'Comic Sans MS', sans-serif !important;
+  }
+  html.font-hyperlegible body {
+    font-family: 'Atkinson Hyperlegible', sans-serif !important;
+  }
+
+  /* Reading Mode Enhancements */
+  html.reading-mode body {
+    line-height: 1.8 !important;
+    letter-spacing: 0.05em !important;
+    word-spacing: 0.1em !important;
+  }
+  html.reading-mode p, 
+  html.reading-mode h1, 
+  html.reading-mode h2, 
+  html.reading-mode h3, 
+  html.reading-mode h4, 
+  html.reading-mode h5, 
+  html.reading-mode h6, 
+  html.reading-mode span {
+    max-width: 65ch; /* Optimal reading length */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  html.reading-mode p, 
+  html.reading-mode h1, 
+  html.reading-mode h2, 
+  html.reading-mode h3, 
+  html.reading-mode h4, 
+  html.reading-mode h5, 
+  html.reading-mode h6, 
+  html.reading-mode span,
+  html.reading-mode a,
+  html.reading-mode li,
+  html.reading-mode label,
+  html.reading-mode button {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    background-color: rgba(255, 255, 0, 0.2);
+  }
+
+  /* Focus Visible States */
+  :focus-visible {
+    outline: 3px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+
+  /* Reduced Motion */
+  html.reduced-motion *, html.reduced-motion *::before, html.reduced-motion *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
