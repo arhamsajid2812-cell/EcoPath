@@ -7,33 +7,11 @@ import { ActiveChallenges } from "@/components/dashboard/ActiveChallenges";
 import { motion } from "framer-motion";
 import { Sparkles, ArrowRight, CheckCircle2, Bot } from "lucide-react";
 
+import { useChallenges } from "@/hooks/useChallenges";
+
 export default function ChallengesPage() {
   const { activeChallenges } = useEcoStore();
-  const [isGenerating, setIsGenerating] = useState(false);
-  const [suggestedChallenges, setSuggestedChallenges] = useState([
-    { title: "Public Transit Pioneer", impact: "High", desc: "Take public transit for all commutes this week.", joined: false },
-    { title: "Zero Waste Weekend", impact: "Medium", desc: "Produce absolutely zero trash this weekend.", joined: false },
-    { title: "Energy Vampire Hunt", impact: "Low", desc: "Unplug 5 unused appliances around the house.", joined: false },
-  ]);
-
-  const handleGenerate = () => {
-    setIsGenerating(true);
-    setTimeout(() => {
-      setSuggestedChallenges(prev => [
-        { title: "Local Food Locavore", impact: "High", desc: "Buy only locally sourced groceries for 7 days.", joined: false },
-        ...prev
-      ]);
-      setIsGenerating(false);
-    }, 1500);
-  };
-
-  const handleJoin = (index: number) => {
-    setSuggestedChallenges(prev => {
-      const copy = [...prev];
-      copy[index].joined = true;
-      return copy;
-    });
-  };
+  const { isGenerating, suggestedChallenges, handleGenerate, handleJoin } = useChallenges();
 
   return (
     <DashboardLayout>

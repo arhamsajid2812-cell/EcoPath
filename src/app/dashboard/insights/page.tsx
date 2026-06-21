@@ -6,6 +6,9 @@ import { useEcoStore } from "@/store/ecoStore";
 import { motion } from "framer-motion";
 import { Bot, Send, UploadCloud, TrendingUp, TrendingDown, ArrowRight } from "lucide-react";
 
+import { generateMockEcoResponse } from "@/services/ai/mockEcoResponse";
+import Link from "next/link";
+
 interface Message {
   id: string;
   sender: "ai" | "user";
@@ -30,42 +33,6 @@ export default function InsightsPage() {
   useEffect(() => {
     scrollToBottom();
   }, [messages, isTyping]);
-
-  const generateMockEcoResponse = (input: string): string => {
-    const lowerInput = input.toLowerCase();
-    
-    if (lowerInput.match(/\b(hi|hello|hey|greetings)\b/)) {
-      return "Hello there! I'm ready to help you reduce your carbon footprint. How can I assist you today?";
-    }
-    if (lowerInput.match(/\b(challenge|quests|habit)\b/)) {
-      return "Challenges are a great way to build habits! I highly recommend trying a 'Meatless Weekend' or 'Public Transit Pioneer'. Both can significantly reduce your impact.";
-    }
-    if (lowerInput.match(/\b(transport|car|drive|flight|fly)\b/)) {
-      return "Transportation is a major emission source. Did you know that switching just 20% of your car commutes to public transit can cut your yearly footprint by nearly 500kg?";
-    }
-    if (lowerInput.match(/\b(food|diet|meat|vegan|vegetarian)\b/)) {
-      return "Diet plays a huge role. A plant-based diet can cut your food-related emissions by up to 70%. Even just one meatless day a week makes a noticeable difference!";
-    }
-    if (lowerInput.match(/\b(electricity|power|energy|kwh)\b/)) {
-      return "To lower your electricity footprint, try unplugging idle devices, switching to LED bulbs, and turning down your thermostat by just 1 degree in winter.";
-    }
-    if (lowerInput.match(/\b(1\+1|math|calculate|joke)\b/)) {
-      return "I'm specifically trained to help you with environmental sustainability! I might not be a math genius, but I can definitely help you calculate your carbon footprint.";
-    }
-    if (lowerInput.match(/\b(thank|thanks)\b/)) {
-      return "You're very welcome! Every little step counts towards a greener planet. Let me know if you need anything else.";
-    }
-    
-    // Generic fallback responses
-    const fallbacks = [
-      "That's a great point. Small daily choices really add up when it comes to sustainability. Have you checked your 'Insights' tab today?",
-      "Interesting! If you want to dive deeper into that, you can log it as an activity to see its exact carbon impact.",
-      "I'm here to help you live more sustainably. Could you provide a bit more detail about your daily habits related to that?",
-      "That's an interesting question. Based on your profile, I'd say focusing on local produce over imported goods is a great next step."
-    ];
-    
-    return fallbacks[Math.floor(Math.random() * fallbacks.length)];
-  };
 
   const handleSendMessage = (e: React.FormEvent) => {
     e.preventDefault();
@@ -142,21 +109,23 @@ export default function InsightsPage() {
             )}
           </div>
           
-          {/* Receipt Scanner Tool Placeholder */}
-          <div className="bg-card rounded-2xl p-8 shadow-sm border-2 border-border border-dashed transition-colors hover:bg-muted/50 hover:border-primary/50 group cursor-pointer">
-            <div className="flex flex-col items-center text-center max-w-md mx-auto">
-              <div className="w-16 h-16 bg-background rounded-full flex items-center justify-center shadow-sm mb-4 group-hover:scale-110 transition-transform">
-                <UploadCloud className="text-primary w-8 h-8" />
+          {/* Scan Receipt Link Card */}
+          <Link href="/dashboard/vision">
+            <div className="bg-card rounded-2xl p-8 shadow-sm border-2 border-border border-dashed transition-colors hover:bg-muted/50 hover:border-primary/50 group cursor-pointer block">
+              <div className="flex flex-col items-center text-center max-w-md mx-auto">
+                <div className="w-16 h-16 bg-background rounded-full flex items-center justify-center shadow-sm mb-4 group-hover:scale-110 transition-transform">
+                  <UploadCloud className="text-primary w-8 h-8" />
+                </div>
+                <h3 className="text-lg font-bold mb-2">Have a new grocery receipt?</h3>
+                <p className="text-sm text-muted-foreground mb-6">
+                  Head over to the Vision AI Scanner to log your latest purchases and update your insights.
+                </p>
+                <div className="bg-primary text-primary-foreground px-6 py-2 rounded-full font-medium text-sm flex items-center gap-2 hover:bg-primary/90 transition-colors">
+                  Go to Vision AI Scanner <ArrowRight size={16} />
+                </div>
               </div>
-              <h3 className="text-lg font-bold mb-2">Grocery Impact Scanner</h3>
-              <p className="text-sm text-muted-foreground mb-6">
-                Drag and drop your grocery receipt here, or click to upload. Our Vision AI will automatically itemize and calculate the carbon footprint of your purchases.
-              </p>
-              <button className="bg-primary text-primary-foreground px-6 py-2 rounded-full font-medium text-sm flex items-center gap-2 hover:bg-primary/90 transition-colors">
-                Select Receipt Image
-              </button>
             </div>
-          </div>
+          </Link>
         </div>
 
         {/* Right Column: AI Eco Coach Chatbot */}
@@ -221,11 +190,13 @@ export default function InsightsPage() {
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Ask your Eco Coach..." 
                 className="w-full pl-4 pr-12 py-3 rounded-full border border-input bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:bg-background transition-colors text-sm" 
+                aria-label="Chat input for Eco Coach"
               />
               <button 
                 type="submit"
                 disabled={!inputValue.trim() || isTyping}
                 className="absolute right-2 p-2 bg-primary text-primary-foreground rounded-full hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                aria-label="Send message"
               >
                 <Send size={16} />
               </button>

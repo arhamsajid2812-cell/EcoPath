@@ -1,59 +1,48 @@
-# EcoPath Testing Strategy & Guidelines
+# EcoPath Testing Strategy & Coverage
 
-This document outlines the testing infrastructure and QA procedures for the EcoPath Hackathon MVP. Our goal is to ensure the core business logic (carbon calculations and AI parsing) remains highly reliable, targeting >80% coverage.
+## Overview
+EcoPath utilizes a comprehensive automated testing suite to guarantee the reliability, accessibility, and mathematical accuracy of the core platform. The suite is built using **Vitest** for unit/integration testing and **React Testing Library** for component rendering verification.
 
-## 🧪 1. Unit Testing Strategy
+## 🎯 Target Goals
+- **Maintain 100% Code Coverage** on mathematical engines (Carbon Engine).
+- **Maintain 100% Code Coverage** on state management stores.
+- **Ensure Zero Regressions** on UI refactors.
 
-We use **Vitest** combined with **React Testing Library** for lightning-fast, highly accurate unit tests.
+## 🗂️ Test Categories
 
-### What We Test
-1. **Carbon Engine (`src/services/carbonEngine/`)**: The core mathematical engine. We rigorously test all edge cases (e.g., zero emissions for bikes, massive emission limits) to guarantee absolute mathematical accuracy before the dashboard ever sees the numbers.
-2. **Vision AI Schema Validation (`src/services/vision/`)**: We use `Zod` to strictly enforce the shape of the Gemini API output. Our unit tests mock the SDK response to verify our parser correctly intercepts valid objects and safely handles malformed JSON without crashing the UI.
-3. **AI Simulator Mocking (`src/services/ai/`)**: We mock `@google/genai` to ensure our internal wrapper classes correctly construct prompts and return strings without triggering real API costs during CI/CD.
+### 1. Pure Function & Mathematical Validation (`carbonEngine.test.ts`)
+Validates the core domain logic decoupled from the UI.
+- Tests exact carbon weight calculations for `Diet`, `Transport`, `Electricity`, `Shopping`, and `Water`.
+- Tests edge cases (e.g., negative distances, maximum possible values).
 
-### Running Tests
-To run the test suite locally:
+### 2. State Management & Stores (`a11yStore.test.ts`)
+Validates global Zustand store functionality.
+- Verifies initial states.
+- Ensures actions correctly mutate state without side effects (e.g., toggling themes, changing font sizes).
+
+### 3. Component Rendering & Accessibility (`components.test.tsx`, `AccessibilityDrawer.test.tsx`)
+Validates the UI layer.
+- Ensures the `DashboardLayout` properly renders children.
+- Ensures semantic HTML renders correctly.
+- Mocks Web Speech API (`window.speechSynthesis`) to test Accessibility Drawer interactions without triggering real browser APIs.
+
+### 4. Custom Hooks & Services (`useChallenges.test.ts`, `mockEcoResponse.test.ts`)
+Validates interactive logic separated from the View.
+- Uses `vi.useFakeTimers()` to test asynchronous timeouts for AI challenge generation.
+- Validates Regex matching and string fallbacks for the Mock AI response generator.
+
+## 🚀 Running the Tests
+
+Execute the complete suite with coverage reporting:
 ```bash
 npm run test
 ```
 
-To generate the coverage report:
+Execute in watch mode during development:
 ```bash
-npm run coverage
+npm run test:watch
 ```
 
-## 🔄 2. Integration Test Strategy
-
-While full E2E testing (Cypress/Playwright) is overkill for a 48-hour hackathon, we rely on **Zustand State Integration** testing.
-
-### What We Test
-- **Simulator Flow**: We verify that the React components (like the `HabitControls` sliders) correctly update the `useEcoStore` state, and that the resulting `totalSavedKg` propagates through the Dashboard correctly.
-- **Vision Upload Flow**: Ensuring the browser's `FileReader` correctly encodes the Base64 image, hits the `/api/vision` proxy, and populates the `ReceiptAnalysisCard` upon return.
-
-## 🕵️ 3. Manual QA Checklist (Judging Readiness)
-
-Before presenting the application to the judges, perform this manual checklist:
-
-### A. The "Demo Mode" Experience
-- [ ] Navigate to `/` (Landing Page).
-- [ ] Ensure the **Community Impact Counter** is incrementing locally.
-- [ ] Click **"Try Demo"**.
-- [ ] Verify you are instantly routed to `/dashboard` without being blocked by an Auth wall.
-- [ ] Ensure the Dashboard is fully populated with the `Alex Judge` profile and charts render smoothly.
-
-### B. Carbon Time Travel Simulator
-- [ ] Navigate to `/dashboard/simulator`.
-- [ ] Move the "Car Usage" slider down to `0%` and "Bike" to `100%`.
-- [ ] Verify the "Total Saved" metric immediately recalculates without lag.
-- [ ] Wait 1.5 seconds and ensure the AI Narrative card updates with a new localized story.
-- [ ] Verify accessibility: Use the `TAB` key to navigate the sliders and ensure the focus ring (`focus-visible:ring-primary`) is clearly visible.
-
-### C. Vision AI Robustness
-- [ ] Navigate to `/dashboard/vision`.
-- [ ] Upload a standard JPEG receipt. Wait for the "A+ to D" grade.
-- [ ] Upload a non-image file (e.g., `.txt`). Verify the UI safely rejects it with a clear error banner.
-- [ ] Review the "Greener Alternatives" card to ensure the suggested swaps are logically sound.
-
----
-
-*EcoPath is built to be resilient. If the AI hallucinates, Zod validation guarantees the UI will fall back gracefully rather than crash.*
+## 🔒 Security in Testing
+- Test suites mock sensitive APIs (`GoogleGenAI`) to ensure secrets are never executed or exposed during CI pipelines.
+- Rate limiters and validation utilities are tested independently to ensure fail-secure behavior.
